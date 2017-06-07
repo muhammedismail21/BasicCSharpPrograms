@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace DataStructures
 {
@@ -12,30 +12,56 @@ namespace DataStructures
     {
         int stackSize;
         int[] stackElements;
-        int index;
+        int top;
         public Stack()
         {
             stackSize = 5;
             stackElements = new int[stackSize];
-            index = -1;
+            top = -1;
         }
         public Stack(int stackSize)
         {
             this.stackSize = stackSize;
             stackElements = new int[stackSize];
-            index = -1;
+            top = -1;
         }
         public bool Push(int element)
         {
-            throw new NotImplementedException();
+            if (top == (stackSize - 1))
+            {
+                throw new StackOverflowException();
+            }
+            else
+            {
+                top++;
+                stackElements[top] = element;
+                return true;
+            }
         }
         public int Pop()
         {
-            throw new NotImplementedException();
+            if (top == -1)
+            {
+                throw new Exception("Stack is empty");
+            }
+            else
+            {
+                int deletedElement = stackElements[top];
+                top--;
+                return deletedElement;
+            }
         }
         public int Peek()
         {
-            throw new NotImplementedException();
+            if (top == -1)
+            {
+                throw new Exception("Stack is empty");
+            }
+            else
+            {
+                int topElement = stackElements[top];
+                return topElement;
+            }
         }
     }
 }
