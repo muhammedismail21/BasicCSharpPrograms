@@ -1,29 +1,37 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections;
 
-namespace ADO.NET
+namespace Collections
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string connectionString = "server=localhost;user id=sa;password=pass;initial catalog=sampledb;";
-            string sqlString = "select * from Employee";
-            SqlConnection connection = new SqlConnection(connectionString);
-            SqlDataAdapter adapter = new SqlDataAdapter(sqlString, connection);
-            DataSet dataset = new DataSet();
-            adapter.Fill(dataset, "employee");
-
-            for(int i=0;i<dataset.Tables["employee"].Rows.Count;i++)
+            ArrayList alist = new ArrayList(5);
+            Console.WriteLine("Initial Capacity: " + alist.Capacity);
+            Console.WriteLine("No of Elements: " + alist.Count);
+            alist.Add("C#");
+            alist.Add("VB.NET");
+            alist.Add("ADO.NET");
+            alist.Add("ASP.NET");
+            alist.Add("ASP.NET MVC");           
+            Console.WriteLine("\n");
+            Console.WriteLine("Capacity: " + alist.Capacity);
+            Console.WriteLine("No of Elements: " + alist.Count);
+            foreach (string item in alist)
             {
-                Console.Write("{0,-4}",dataset.Tables["employee"].Rows[i][0].ToString());
-                Console.Write("{0,-12}", dataset.Tables["employee"].Rows[i][1].ToString());
-                Console.Write("{0, -14}", dataset.Tables["employee"].Rows[i][3]);
-                Console.Write("{0:C}", dataset.Tables["employee"].Rows[i][2]);
-                
-                Console.WriteLine();
+                Console.WriteLine(item);
             }
+
+            alist.Add("WCF");// adiing 6th element
+            Console.WriteLine("\nAfter adding 6th element");
+            Console.WriteLine("Capacity: " + alist.Capacity);
+            Console.WriteLine("No of Elements: " + alist.Count);
+            foreach (string item in alist)
+            {
+                Console.WriteLine(item);
+            }
+
             Console.ReadLine();
         }
     }
