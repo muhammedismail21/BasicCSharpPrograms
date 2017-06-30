@@ -1,60 +1,85 @@
-using System;
+﻿using System;
 
-namespace DataStructures
+namespace OOPs
 {
-    class Stack
+    class Stack<T>
     {
-        int stackSize;
-        int[] stackElements;
+        int size;
+        T[] arr;
         int top;
+        int count;
+        public int Count
+        {
+            get
+            {
+                return top + 1;
+            }
+        }
         public Stack()
         {
-            stackSize = 5;
-            stackElements = new int[stackSize];
+            size = 3;
+            arr = new T[size];
             top = -1;
         }
-        public Stack(int stackSize)
+        public Stack(int size)
         {
-            this.stackSize = stackSize;
-            stackElements = new int[stackSize];
+            this.size = size;
+            arr = new T[size];
             top = -1;
         }
-        public bool Push(int element)
+        public void Push(T element)
         {
-            if (top == (stackSize - 1))
+            if (top != size)
             {
-                throw new StackOverflowException();
+                arr[++top] = element;
             }
             else
             {
-                top++;
-                stackElements[top] = element;
+                throw new Exception("Stack overflows.");
+            }
+        }
+        public T Pop()
+        {
+            if (top != -1)
+            {
+                return arr[top--];
+            }
+            else
+            {
+                throw new Exception("Stack is empty.");
+            }
+        }
+        public T Peek()
+        {
+            if (top != -1)
+            {
+                return arr[top];
+            }
+            else
+            {
+                throw new Exception("Stack is empty.");
+            }
+        }
+        public bool IsEmpty()
+        {
+            if (top == -1)
+            {
                 return true;
             }
-        }
-        public int Pop()
-        {
-            if (top == -1)
+            else
             {
-                throw new Exception("Stack is empty");
+                return false;
+            }
+        }
+        public T GetElement(int index)
+        {
+            if (index > -1 && index <= top)
+            {
+                return arr[index];
             }
             else
             {
-                int deletedElement = stackElements[top];
-                top--;
-                return deletedElement;
-            }
-        }
-        public int Peek()
-        {
-            if (top == -1)
-            {
-                throw new Exception("Stack is empty");
-            }
-            else
-            {
-                int topElement = stackElements[top];
-                return topElement;
+                throw new Exception("Index out of range.");
             }
         }
     }
