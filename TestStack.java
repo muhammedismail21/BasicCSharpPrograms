@@ -1,6 +1,5 @@
-package ds.programs;
-
-public class TestStack 
+using System;
+class TestStack 
 {
 
 	public static void main(String[] args) 
@@ -13,9 +12,9 @@ public class TestStack
 		_stack.Push(60);
 		_stack.Push(17);
 		
-		for (int i = 0; i < _stack.getStackElements().length; i++) 
+		for (int i = 0; i < _stack.StackElements.Length; i++) 
 		{
-			System.out.println(_stack.getStackElements()[i]);
+			Console.WriteLine(_stack.StackElements[i]);
 		}
 
 	}
